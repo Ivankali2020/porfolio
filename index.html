@@ -261,11 +261,11 @@
         <div class="container mx-auto px-4">
             <div class="bg-retro-yellow retro-btn  rounded-full py-2 px-4 flex items-center justify-center">
                 <div class="flex space-x-4">
-                    <a href="#" class="font-medium md:px-2 py-1 rounded-full ">Home</a>
-                    <a href="#about" class="font-medium md:px-2 py-1">About</a>
-                    <a href="#experience" class="font-medium md:px-2 py-1">Experiences</a>
-                    <a href="#skills" class="font-medium md:px-2 py-1">SKills</a>
-                    <a href="#contact" class="font-medium md:px-2 py-1">Contact</a>
+                    <a href="#" class="text-normal  font-medium md:px-2 py-1 rounded-full ">Home</a>
+                    <a href="#about" class="text-normal  font-medium md:px-2 py-1">About</a>
+                    <a href="#experience" class="text-normal  hidden md:inline  font-medium md:px-2 py-1">Experiences</a>
+                    <a href="#skills" class="text-normal  font-medium md:px-2 py-1">Skills</a>
+                    <a href="#contact" class="text-normal  font-medium md:px-2 py-1">Contact</a>
                 </div>
             </div>
         </div>
@@ -273,7 +273,7 @@
 
     <!-- Hero Section -->
     <header class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
-        <div class="container mx-auto px-4 py-16 relative z-10">
+        <div class="container mx-auto px-4 py-8 md:py-16 relative z-10">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-10 md:mb-0">
                     <div class="typewriter mb-4">
@@ -285,43 +285,43 @@
                         WEB AND MOBILE DEVELOPER
                     </h2>
                     <div class="retro-line w-32 mb-6"></div>
-                    <p class="text-lg mb-8 max-w-lg">
+                    <p class="text-sm lg:text-lg mb-8 max-w-lg">
                         An ambitious person who has developed a mature and responsible
                         approach to any task that I undertake, or situation that I am
                         presented with.
                     </p>
                     <div class="flex space-x-4">
                         <a href="#contact"
-                            class="retro-btn bg-retro-purple hover:bg-retro-purple/80 text-white px-6 py-3 inline-block">CONTACT
+                            class="retro-btn bg-retro-yellow border-retro-yellow  hover:bg-retro-light/30 text-retro-dark px-6 py-1.5 md:py-3 inline-block">CONTACT
                             ME</a>
-                        <a href="#experience" class="retro-btn border-retro-purple text-white px-6 py-3 inline-block">MY
+                        <a href="#experience" class="retro-btn border-retro-yellow hover:bg-retro-light/30 text-retro-dark px-6 py-1.5 md:py-3 inline-block">MY
                             WORK</a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
+                <div class="md:w-1/2 w-full  flex justify-center">
                     <div class="retro-box p-1 bg-retro-light rounded-lg overflow-hidden">
                         <div class="bg-retro-light p-4 rounded-lg">
                             <pre class="text-retro-dark font-retro text-sm md:text-base">
-    <span class="text-retro-light">class</span> <span class="text-retro-yellow">Developer</span> {
-        <span class="text-retro-blue">constructor</span>() {
-            <span class="text-retro-orange">this</span>.name = <span class="text-retro-green">"Aung Pyae Phyo ( IVAN )"</span>;
-            <span class="text-retro-orange">this</span>.role = <span class="text-retro-green">"Senior Backend Developer"</span>;
-            <span class="text-retro-orange">this</span>.skills = [
-                <span class="text-retro-green">"Laravel"</span>,
-                <span class="text-retro-green">"PHP"</span>,
-                <span class="text-retro-green">"JavaScript"</span>,
-                <span class="text-retro-green">"React"</span>,
-                <span class="text-retro-green">"Flutter"</span>
-            ];
-        }
-
-        <span class="text-retro-blue">sayHello</span>() {
-            <span class="text-retro-light">return</span> <span class="text-retro-green">"Welcome to my portfolio!"</span>;
-        }
+<span class="text-retro-light">class</span> <span class="text-retro-yellow">Developer</span> {
+    <span class="text-retro-blue">constructor</span>() {
+        <span class="text-retro-orange">this</span>.name = <span class="text-retro-green">"Ivan Phyo "</span>;
+        <span class="text-retro-orange">this</span>.role = <span class="text-retro-green">"Backend Developer"</span>;
+        <span class="text-retro-orange">this</span>.skills = [
+            <span class="text-retro-green">"Laravel"</span>,
+            <span class="text-retro-green">"PHP"</span>,
+            <span class="text-retro-green">"JavaScript"</span>,
+            <span class="text-retro-green">"React"</span>,
+            <span class="text-retro-green">"Flutter"</span>
+        ];
     }
 
-    <span class="text-retro-orange">const</span> aung = <span class="text-retro-dark">new</span> <span class="text-retro-yellow">Developer</span>();
-    console.<span class="text-retro-blue">log</span>(aung.<span class="text-retro-blue">sayHello</span>());
+     <span class="text-retro-blue">sayHello</span>() {
+        <span class="text-retro-light">return</span> <span class="text-retro-green">"Welcome to my portfolio!"</span>;
+    }
+}
+
+<span class="text-retro-orange">const</span> aung = <span class="text-retro-dark">new</span> <span class="text-retro-yellow">Developer</span>();
+console.<span class="text-retro-blue">log</span>(aung.<span class="text-retro-blue">sayHello</span>());
                             </pre>
                         </div>
                     </div>
@@ -331,27 +331,27 @@
     </header>
 
     <!-- About Section -->
-    <section id="about" class="py-20 relative">
+    <section id="about" class="py-10 md:py-20 relative">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-display text-center mb-16 ">
+            <h2 class="text-4xl font-display text-center mb-8 md mb-8:md:mb-16 ">
                 ABOUT ME
             </h2>
             <div class="retro-box bg-retro-light backdrop-blur-sm p-8 max-w-4xl mx-auto">
-                <p class="text-lg mb-6">
+                <p class="text-sm lg:text-lg mb-6">
                     I am an ambitious person who has developed a mature and responsible
                     approach to any task that I undertake, or situation that I am
                     presented with. I am excellent in working with others to achieve a
                     certain objective on time and with excellence.
                 </p>
-                <p class="text-lg">
+                <p class="text-sm lg:text-lg">
                     With over 3.5 years of experience in web development, I specialize in
                     Laravel backend development, WordPress customization, and mobile app
                     development with Flutter. I'm passionate about creating efficient,
                     scalable, and maintainable code.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-4  md:mt-10">
                     <div>
-                        <h3 class="text-xl font-retro text-retro-dark mb-4">LOCATION</h3>
+                        <h3 class="text-lg md:text-xl font-retro text-retro-dark mb-2  md:mb-4">LOCATION</h3>
                         <p class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-retro-dark" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -364,7 +364,7 @@
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-retro text-retro-dark mb-4">EMAIL</h3>
+                        <h3 class="text-lg md:text-xl font-retro text-retro-dark mb-2  md:mb-4">EMAIL</h3>
                         <p class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-retro-dark" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -376,7 +376,7 @@
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-retro text-retro-dark mb-4">PHONE</h3>
+                        <h3 class="text-lg md:text-xl font-retro text-retro-dark mb-2  md:mb-4">PHONE</h3>
                         <p class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-retro-dark" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -387,7 +387,7 @@
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-retro text-retro-dark mb-4">PROFILES</h3>
+                        <h3 class="text-lg md:text-xl font-retro text-retro-dark mb-2  md:mb-4">PROFILES</h3>
                         <div class="flex space-x-4">
                             <a href="https://github.com/ivankaip2020" target="_blank"
                                 class="hover:text-retro-dark flex items-center">
@@ -415,25 +415,23 @@
     </section>
 
 
-  
-
     <!-- Education Section -->
-    <section id="education" class="py-20 bg-retro-light/30 relative">
+    <section id="education" class="py-10 md:py-20 bg-retro-light/30 relative">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-display text-center mb-16 ">
+            <h2 class="text-4xl font-display text-center mb-8 md:mb-16 ">
                 EDUCATION
             </h2>
 
-            <div class="max-w-4xl mx-auto  gap-10">
+            <div class="max-w-4xl mx-auto flex flex-col gap-4 md:gap-8">
                 <!-- Web Development Certificate -->
                 <div class="retro-box bg-retro-light backdrop-blur-sm p-8">
                     <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-2xl font-retro text-retro-dark">
+                        <h3 class="text-lg text-2xl font-retro text-retro-dark">
                             Web Development Certificate (MMSIT)
                         </h3>
                         <span class="text-sm text-retro-dark opacity-70">2020-2021</span>
                     </div>
-                    <p class="mb-4">
+                    <p class="mb-4 text-sm md:text-normal ">
                         I enrolled this course when I decided to change my main career on
                         this year and I learned so much knowledge of web development
                         process and real life project practices of backend and frontend
@@ -444,12 +442,12 @@
                 <!-- B.A (Eng) -->
                 <div class="retro-box bg-retro-light backdrop-blur-sm p-8">
                     <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-2xl font-retro text-retro-dark">
+                        <h3 class="text-lg text-2xl font-retro text-retro-dark">
                             B.A (Eng) 3rd years
                         </h3>
                         <span class="text-sm text-retro-dark opacity-70">2019-2021</span>
                     </div>
-                    <p class="mb-4">
+                    <p class="mb-4 text-sm md:text-normal ">
                         I enrolled Loikaw university on 2019 and I stop my education on
                         2021 during the semester I got the knowledge of time management
                         techniques and English literature culture.
@@ -459,12 +457,12 @@
                 <!-- Diploma in Teacher Education -->
                 <div class="retro-box bg-retro-light backdrop-blur-sm p-8 ">
                     <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-2xl font-retro text-retro-dark">
+                        <h3 class="text-lg text-2xl font-retro text-retro-dark">
                             Diploma in Teacher Education (DTE.d)
                         </h3>
                         <span class="text-sm text-retro-dark opacity-70">2016-2018</span>
                     </div>
-                    <p class="mb-4">
+                    <p class="mb-4 text-sm md:text-normal ">
                         I enrolled Taunggyi Education College from 2016 to 2018. After
                         this school I have basic knowledge of computer programming, good
                         presentation, physical education. Also got soft skills like
@@ -477,9 +475,9 @@
     </section>
 
       <!-- Experience Section -->
-      <section id="experience" class="py-20 relative z-10 ">
+      <section id="experience" class="py-10 md:py-20 relative z-10 ">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-display text-center mb-16 retro-grow">
+            <h2 class="text-4xl font-display text-center mb-8  md:mb-16 ">
                 WORK EXPERIENCE
             </h2>
 
@@ -488,7 +486,7 @@
                 <div class="relative">
                     <!-- Line -->
                     <div
-                        class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-retro-dark to-retro-dark">
+                        class="absolute hidden md:block  left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-retro-dark to-retro-dark">
                     </div>
 
                     <!-- Senior Backend Developer -->
@@ -498,7 +496,7 @@
                                 <h3 class="text-2xl font-retro text-retro-dark">
                                     Senior Backend Developer
                                 </h3>
-                                <p class="text-retro-light opacity-80 mb-2">
+                                <p class="text-retro-light  mb-2">
                                     Coosy Company (Myanmar branch of Japan)
                                 </p>
                                 <p class="inline-block retro-btn px-3 py-1 text-sm">
@@ -569,7 +567,7 @@
                     <!-- Senior Laravel Developer -->
                     <div class="relative mb-16">
                         <div class="flex flex-col-reverse md:flex-row-reverse items-start">
-                            <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0 md:order-1">
+                            <div class="md:w-1/2 md:pr-12 md:text-right pl-8 md:pl-0 mt-8 md:mt-0 md:order-1">
                                 <div class="retro-box bg-retro-light backdrop-blur-sm p-6">
                                     <ul class="space-y-3">
                                         <li class="flex items-start ">
@@ -629,12 +627,12 @@
                             </div>
                             <div class="md:w-1/2 pl-8 md:pl-12 relative md:order-0">
                                 <div
-                                    class="absolute left-0 md:-left-2  top-0 w-4 h-4 rounded-full bg-retro-light border-4 border-retro-dark">
+                                    class="absolute left-0 md:-left-2 top-32  md:top-0 w-4 h-4 rounded-full bg-retro-light border-4 border-retro-dark">
                                 </div>
                                 <h3 class="text-2xl font-retro text-retro-dark">
                                     Senior Laravel Developer
                                 </h3>
-                                <p class="text-retro-light opacity-80 mb-2">
+                                <p class="text-retro-light  mb-2">
                                     APP.COM.MM Company Limited
                                 </p>
                                 <p class="inline-block retro-btn px-3 py-1 text-sm">
@@ -647,11 +645,11 @@
                     <!-- Mid Laravel Developer -->
                     <div class="relative">
                         <div class="flex flex-col md:flex-row items-start">
-                            <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0">
+                            <div class="md:w-1/2 pl-8 md:pl-0 md:pr-12 md:text-right mb-8 md:mb-0">
                                 <h3 class="text-2xl font-retro text-retro-dark">
                                     Mid Laravel Developer
                                 </h3>
-                                <p class="text-retro-light opacity-80 mb-2">
+                                <p class="text-retro-light  mb-2">
                                     APP.COM.MM Company Limited
                                 </p>
                                 <p class="inline-block retro-btn px-3 py-1 text-sm">
@@ -716,9 +714,9 @@
 
     
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-retro-light/30 relative">
+    <section id="skills" class="py-10 md:py-20 bg-retro-light/30 relative">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-display text-center mb-16 ">
+            <h2 class="text-4xl font-display text-center mb-8 md:mb-16 ">
                 SKILLS OVERVIEW
             </h2>
 
@@ -913,9 +911,9 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 relative">
+    <section id="contact" class="py-10 md:py-20 relative">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-display text-center mb-16 ">
+            <h2 class="text-4xl font-display text-center mb-8 md:mb-16 ">
                 CONTACT ME
             </h2>
 
