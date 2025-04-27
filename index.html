@@ -227,47 +227,12 @@
 
 <body class="antialiased">
     <div class="absolute inset-0 bg-grid-pattern bg-[size:50px_50px] opacity-10"></div>
-
-    <!-- Scanline Effect -->
-    <!-- <div class="scanline"></div> -->
-
-    <!-- Navigation -->
-    <!-- <nav
-        class="fixed top-0 left-0 w-full bg-retro-dark bg-opacity-90 backdrop-blur-sm z-50 border-b-2 border-retro-purple">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-display ">AUNG.DEV</a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#about" class="retro-btn px-3 py-1 hover:text-retro-dark transition-all">ABOUT</a>
-                <a href="#skills" class="retro-btn px-3 py-1 hover:text-retro-dark transition-all">SKILLS</a>
-                <a href="#experience" class="retro-btn px-3 py-1 hover:text-retro-dark transition-all">EXPERIENCE</a>
-                <a href="#education" class="retro-btn px-3 py-1 hover:text-retro-dark transition-all">EDUCATION</a>
-                <a href="#contact" class="retro-btn px-3 py-1 hover:text-retro-dark transition-all">CONTACT</a>
-            </div>
-            <button class="md:hidden retro-btn px-3 py-1" id="mobileMenuBtn">
-                MENU
-            </button>
-        </div>
-        <div class="md:hidden hidden bg-retro-dark border-t-2 border-retro-purple" id="mobileMenu">
-            <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
-                <a href="#about" class="retro-btn px-3 py-1 hover:text-retro-dark transition-all text-center">ABOUT</a>
-                <a href="#skills"
-                    class="retro-btn px-3 py-1 hover:text-retro-dark transition-all text-center">SKILLS</a>
-                <a href="#experience"
-                    class="retro-btn px-3 py-1 hover:text-retro-dark transition-all text-center">EXPERIENCE</a>
-                <a href="#education"
-                    class="retro-btn px-3 py-1 hover:text-retro-dark transition-all text-center">EDUCATION</a>
-                <a href="#contact"
-                    class="retro-btn px-3 py-1 hover:text-retro-dark transition-all text-center">CONTACT</a>
-            </div>
-        </div>
-    </nav> -->
-
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 mx-auto  py-4 md:max-w-lg  ">
         <div class="container mx-auto px-4">
             <div class="bg-retro-yellow retro-btn  rounded-full py-2 px-4 flex items-center justify-center">
                 <div class="flex space-x-4">
-                    <a href="#" class="text-normal  font-medium md:px-2 py-1 rounded-full ">Home</a>
+                    <a href="#home" class="text-normal  font-medium md:px-2 py-1 rounded-full ">Home</a>
                     <a href="#about" class="text-normal  font-medium md:px-2 py-1">About</a>
                     <a href="#experience" class="text-normal  hidden md:inline  font-medium md:px-2 py-1">Experiences</a>
                     <a href="#skills" class="text-normal  font-medium md:px-2 py-1">Skills</a>
@@ -278,7 +243,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+    <header id="home" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
         <div class="container mx-auto px-4 py-8 md:py-16 relative z-10">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-10 md:mb-0">
@@ -1146,18 +1111,32 @@ console.<span class="text-retro-blue">log</span>(aung.<span class="text-retro-bl
 
     <!-- JavaScript -->
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
-
-        mobileMenuBtn.addEventListener("click", () => {
-            mobileMenu.classList.toggle("hidden");
-        });
 
         // Back to Top Button
         const backToTopBtn = document.getElementById("backToTop");
 
-        window.addEventListener("scroll", () => {
+       
+        // GSAP Animations
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Offset for fixed header
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            window.addEventListener("scroll", () => {
             if (window.pageYOffset > 300) {
                 backToTopBtn.classList.remove("opacity-0", "invisible");
                 backToTopBtn.classList.add("opacity-100", "visible");
@@ -1174,10 +1153,24 @@ console.<span class="text-retro-blue">log</span>(aung.<span class="text-retro-bl
             });
         });
 
-        // GSAP Animations
-        document.addEventListener("DOMContentLoaded", () => {
+
             // Register ScrollTrigger plugin
             gsap.registerPlugin(ScrollTrigger);
+
+            // Animate education items
+            gsap.utils.toArray('.retro-box').forEach(box => {
+                gsap.from(box, {
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    scrollTrigger: {
+                        trigger: box,
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    }
+                });
+            });
+            
 
             // Hero Section Animation
             gsap.from(".typewriter h1", {
