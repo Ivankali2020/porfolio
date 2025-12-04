@@ -343,7 +343,7 @@
               interfaces.
             </p>
 
-            <div class="flex space-x-4">
+            <div class="flex space-x-4 gap-4 justify-center items-end flex-col md:flex-row">
               <a
                 href="#contact"
                 class="retro-btn bg-black text-retro-yellow px-8 py-3 font-bold text-lg cursor-hover"
@@ -613,7 +613,7 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 relative bg-black/5">
+    <section id="experience" class="py-20 relative bg-black/5 overflow-hidden">
       <div class="container mx-auto px-4">
         <div class="flex flex-col items-center mb-16">
           <h2
@@ -652,7 +652,7 @@
 
               <!-- Dot -->
               <div
-                class="absolute left-8 md:left-1/2 w-6 h-6 bg-retro-yellow border-4 border-black rounded-full transform -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)]"
+                class="absolute left-[33.5px] md:left-1/2 w-6 h-6 bg-retro-yellow border-4 border-black rounded-full transform -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)]"
               ></div>
 
               <div class="w-full md:w-1/2 md:pl-12 pl-20">
@@ -691,7 +691,7 @@
 
               <!-- Dot -->
               <div
-                class="absolute left-8 md:left-1/2 w-6 h-6 bg-retro-yellow border-4 border-black rounded-full transform -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)]"
+                class="absolute left-[33.5px] md:left-1/2 w-6 h-6 bg-retro-yellow border-4 border-black rounded-full transform -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)]"
               ></div>
 
               <div class="w-full md:w-1/2 md:pr-12 pl-20 md:pl-0">
@@ -732,7 +732,7 @@
 
               <!-- Dot -->
               <div
-                class="absolute left-8 md:left-1/2 w-6 h-6 bg-retro-yellow border-4 border-black rounded-full transform -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)]"
+                class="absolute left-[33.5px] md:left-1/2 w-6 h-6 bg-retro-yellow border-4 border-black rounded-full transform -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)]"
               ></div>
 
               <div class="w-full md:w-1/2 md:pl-12 pl-20">
@@ -1229,7 +1229,7 @@
     <!-- JavaScript Logic -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        gsap.registerPlugin(ScrollTrigger);
 
         // --- 1. Custom Cursor Logic ---
         // Initialize the custom cursor only on non-touch / pointer-fine devices and only if the element exists.
@@ -1262,19 +1262,6 @@
             );
           });
         }
-
-        // --- 2. Typewriter Effect for Hero Code ---
-        const codeString = ``;
-
-        gsap.to("#typewriter-code", {
-          text: {
-            value: codeString,
-            delimiter: "",
-          },
-          duration: 4,
-          ease: "none",
-          delay: 1,
-        });
 
         // --- 3. Hero Animations ---
         const tl = gsap.timeline();
