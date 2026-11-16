@@ -1,4 +1,5 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
+import { Moon, Sun } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
@@ -74,6 +75,28 @@ function StatCard({ stat }) {
 export default function App() {
   const root = useRef(null)
   const lenisRef = useRef(null)
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light')
+
+  const toggleTheme = (e) => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    const html = document.documentElement
+    const apply = () => {
+      html.dataset.theme = next
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#0d0d10' : '#f7f4ee')
+      try { localStorage.setItem('theme', next) } catch { /* private mode: just don't remember it */ }
+      setTheme(next)
+    }
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!document.startViewTransition || calm) return apply()
+    // the new theme expands as a circle from the button
+    const r = e.currentTarget.getBoundingClientRect()
+    const x = r.left + r.width / 2
+    const y = r.top + r.height / 2
+    html.style.setProperty('--vx', `${x}px`)
+    html.style.setProperty('--vy', `${y}px`)
+    html.style.setProperty('--vr', `${Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))}px`)
+    document.startViewTransition(apply)
+  }
 
   useLayoutEffect(() => {
     const mm = gsap.matchMedia()
@@ -89,9 +112,75 @@ export default function App() {
 
       // — hero intro
       gsap.timeline({ defaults: { ease: 'power4.out' } })
-        .from('.hero .ch', { yPercent: 120, duration: 1.2, stagger: 0.035 }, 0.15)
+        .from('.hero .ch', {
+          yPercent: 120, duration: 1.2, stagger: 0.035,
+          // once the letters are in, un-clip the rows so they can be dragged around
+          onComplete: () => document.querySelector('.hero-title')?.classList.add('is-ready'),
+        }, 0.15)
         .from('[data-intro]', { opacity: 0, y: 24, duration: 1, stagger: 0.12 }, 0.7)
         .from('.nav', { opacity: 0, y: -20, duration: 0.9 }, 0.9)
+
+      // — jelly letters: drag any letter of the name and its neighbours stretch with it,
+      //   then everything wobbles back into place
+      const JELLY = { x: 0, y: 0, rotation: 0, scaleX: 1, scaleY: 1 }
+      const jellyCleanups = gsap.utils.toArray('.hero-title .chars').flatMap((rowEl) => {
+        const row = gsap.utils.toArray('.ch', rowEl)
+        return row.map((ch, i) => {
+          let start = null
+          const down = (e) => {
+            start = { x: e.clientX, y: e.clientY }
+            ch.setPointerCapture(e.pointerId)
+            ch.classList.add('is-drag')
+          }
+          const move = (e) => {
+            if (!start) return
+            const dx = e.clientX - start.x
+            const dy = e.clientY - start.y
+            const pull = Math.min(Math.hypot(dx, dy) / 240, 0.7)
+            const sideways = Math.abs(dx) >= Math.abs(dy)
+            row.forEach((el, j) => {
+              const dist = Math.abs(j - i)
+              const f = Math.pow(0.55, dist) // neighbours follow less and less
+              gsap.to(el, {
+                x: dx * f, y: dy * f, rotation: dx * 0.05 * f,
+                scaleX: 1 + pull * f * (sideways ? 0.55 : -0.3),
+                scaleY: 1 + pull * f * (sideways ? -0.3 : 0.55),
+                duration: 0.22 + dist * 0.07, ease: 'power3.out', overwrite: 'auto',
+              })
+            })
+          }
+          const up = () => {
+            if (!start) return
+            start = null
+            ch.classList.remove('is-drag')
+            row.forEach((el, j) => {
+              gsap.to(el, {
+                ...JELLY, duration: 1.7, ease: 'elastic.out(1.25, 0.26)',
+                delay: Math.abs(j - i) * 0.035, overwrite: 'auto',
+              })
+            })
+          }
+          // a little squish when the pointer passes over a letter
+          const squish = () => {
+            if (start || gsap.isTweening(ch)) return
+            gsap.fromTo(ch, { scaleX: 1.22, scaleY: 0.8 }, {
+              scaleX: 1, scaleY: 1, duration: 1.1, ease: 'elastic.out(1.3, 0.3)', overwrite: 'auto',
+            })
+          }
+          ch.addEventListener('pointerdown', down)
+          ch.addEventListener('pointermove', move)
+          ch.addEventListener('pointerup', up)
+          ch.addEventListener('pointercancel', up)
+          ch.addEventListener('pointerenter', squish)
+          return () => {
+            ch.removeEventListener('pointerdown', down)
+            ch.removeEventListener('pointermove', move)
+            ch.removeEventListener('pointerup', up)
+            ch.removeEventListener('pointercancel', up)
+            ch.removeEventListener('pointerenter', squish)
+          }
+        })
+      })
 
       // — hero parallax on the way out
       const heroOut = { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
@@ -172,6 +261,8 @@ export default function App() {
       document.fonts?.ready.then(refresh)
 
       return () => {
+        jellyCleanups.forEach((off) => off())
+        document.querySelector('.hero-title')?.classList.remove('is-ready')
         gsap.ticker.remove(tick)
         lenis.destroy()
         lenisRef.current = null
@@ -207,7 +298,17 @@ export default function App() {
             </li>
           ))}
         </ul>
-        <a className="nav-cta" href="#contact" onClick={(e) => go(e, 'contact')}>Contact</a>
+        <div className="nav-right">
+          <button
+            type="button"
+            className="theme-btn"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
+          </button>
+          <a className="nav-cta" href="#contact" onClick={(e) => go(e, 'contact')}>Contact</a>
+        </div>
       </nav>
 
       <main>
@@ -287,7 +388,15 @@ export default function App() {
                 </div>
                 <div className="job-body" data-reveal>
                   <h3>{job.role}</h3>
-                  <p className="job-co">{job.company}</p>
+                  <p className="job-co">
+                    <a href={job.url} target="_blank" rel="noreferrer">
+                      {job.logo && (
+                        <img className="job-logo" src={import.meta.env.BASE_URL + job.logo} alt="" loading="lazy" />
+                      )}
+                      <span>{job.company}</span>
+                      <span className="job-arrow" aria-hidden="true">↗</span>
+                    </a>
+                  </p>
                   <ul data-stagger>
                     {job.points.map((pt) => <li key={pt}>{pt}</li>)}
                   </ul>
@@ -336,7 +445,15 @@ export default function App() {
                   <h3>{e.title}</h3>
                   <p className="edu-place">{e.place}</p>
                 </div>
-                <p className="edu-text">{e.text}</p>
+                <div>
+                  <p className="edu-text">{e.text}</p>
+                  {e.certificates && (
+                    <div className="edu-certs">
+                      <p className="edu-certs-label">Certificates · {e.certificates.length}</p>
+                      <ProjectSlider images={e.certificates} title={`${e.title} certificates`} ratio={1414 / 2000} small />
+                    </div>
+                  )}
+                </div>
               </li>
             ))}
           </ul>

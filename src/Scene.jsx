@@ -1,11 +1,15 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 // Simple Icons — free, CC0-licensed brand glyphs.
-import { siLaravel, siFilament, siFlutter, siReact, siLivewire, siGit } from 'simple-icons'
+import {
+  siLaravel, siFilament, siFlutter, siReact, siLivewire, siGit,
+  siPhp, siMysql, siJavascript, siVuedotjs, siDart, siTailwindcss, siWordpress, siSqlite,
+} from 'simple-icons'
 
 // Add or remove tools here; each one floats in the background as a logo tile.
-const TOOLS = [siLaravel, siFilament, siFlutter, siReact, siLivewire, siGit]
-const EXTRA_COPIES = 14 // smaller, deeper copies scattered behind the main six
+// Every logo appears exactly once.
+const TOOLS = [siLaravel, siFilament, siFlutter, siReact, siLivewire, siGit] // large, close to the camera
+const MORE_TOOLS = [siPhp, siMysql, siJavascript, siVuedotjs, siDart, siTailwindcss, siWordpress, siSqlite] // smaller, further back
 
 // Draws a logo on a soft white rounded tile and returns it as a texture.
 function makeTile(icon) {
@@ -79,7 +83,7 @@ export default function Scene() {
 
     // — floating tool logos
     const rand = seeded(7)
-    const textures = TOOLS.map(makeTile)
+    const textures = [...TOOLS, ...MORE_TOOLS].map(makeTile)
     const plane = new THREE.PlaneGeometry(1, 1)
     const cluster = new THREE.Group()
     const tiles = []
@@ -104,10 +108,12 @@ export default function Scene() {
     TOOLS.forEach((_, i) => {
       addTile(i, (i / TOOLS.length) * Math.PI * 2 + 0.5, 1.5 + rand() * 0.9, -0.6 + rand() * 1.6, 0.98)
     })
-    // extra copies, further back
-    for (let i = 0; i < EXTRA_COPIES; i++) {
-      addTile(i % TOOLS.length, rand() * Math.PI * 2, 2.8 + rand() * 3.2, -7 + rand() * 4.5, 0.78)
-    }
+    // the rest of the toolkit, further back
+    MORE_TOOLS.forEach((_, i) => {
+      // spread evenly around the ring so they don't bunch up
+      const angle = (i / MORE_TOOLS.length) * Math.PI * 2 + rand() * 0.5
+      addTile(TOOLS.length + i, angle, 3 + rand() * 2.6, -5.5 + rand() * 3.5, 0.8)
+    })
     scene.add(cluster)
 
     // — dust
@@ -127,6 +133,18 @@ export default function Scene() {
       }),
     )
     scene.add(dust)
+
+    // — follow the page theme (light / dark)
+    const applyTheme = () => {
+      const dark = document.documentElement.dataset.theme === 'dark'
+      scene.fog.color.set(dark ? 0x0d0d10 : 0xf7f4ee)
+      dust.material.color.set(dark ? 0xece7df : 0x6b5a3e)
+      dust.material.opacity = dark ? 0.6 : 0.45
+      tiles.forEach((m) => m.material.color.set(dark ? 0xd6d2ca : 0xffffff))
+    }
+    applyTheme()
+    const themeWatch = new MutationObserver(applyTheme)
+    themeWatch.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
 
     const mouse = { x: 0, y: 0 }
     const onMove = (e) => {
@@ -194,6 +212,7 @@ export default function Scene() {
 
     return () => {
       cancelAnimationFrame(raf)
+      themeWatch.disconnect()
       window.removeEventListener('pointermove', onMove)
       window.removeEventListener('resize', onResize)
       textures.forEach((tex) => tex.dispose())

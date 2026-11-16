@@ -8,7 +8,7 @@ export const profile = {
   github: 'https://github.com/Ivankali2020',
   githubHandle: 'Ivankali2020',
   intro:
-    'Backend developer building Laravel platforms, Filament panels and Flutter apps — from multi-tenant commerce to offline point-of-sale.',
+    'Backend developer building Laravel platforms, Filament panels and Flutter apps — from multi-tenant e-commerce and LMS platforms to offline point-of-sale.',
   about: [
     'I am an ambitious developer with a mature, responsible approach to every task I take on. I work well with others, and I care about delivering on time and to a high standard.',
     'I trained as a teacher and studied English literature before changing careers in 2020. That path left me with clear communication, structured thinking and patience — habits I now bring to code reviews, cross-border teamwork and the products I ship.',
@@ -63,6 +63,8 @@ export const experience = [
   {
     role: 'Backend Developer',
     company: 'Coosy Japan — Myanmar branch',
+    logo: 'logos/coosy.png',
+    url: 'https://coosy.co.jp/',
     period: 'Jun 2024 — Present',
     points: [
       'Build custom-designed WordPress sites with SEO optimisation.',
@@ -76,6 +78,8 @@ export const experience = [
   {
     role: 'Senior Laravel Developer',
     company: 'APP.COM.MM Company Limited',
+    logo: 'logos/appcommm.jpg',
+    url: 'https://app.com.mm/',
     period: '2023 — May 2024',
     points: [
       'Developed and maintained web applications on the Laravel framework.',
@@ -89,6 +93,8 @@ export const experience = [
   {
     role: 'Mid Laravel Developer',
     company: 'APP.COM.MM Company Limited',
+    logo: 'logos/appcommm.jpg',
+    url: 'https://app.com.mm/',
     period: 'May 2021 — 2023',
     points: [
       'Assisted senior developers in building and maintaining Laravel projects.',
@@ -140,6 +146,12 @@ export const education = [
     place: 'MMSIT',
     period: '2020 — 2021',
     text: 'The course I took when I decided to change careers — backend and frontend techniques practised on real-life projects.',
+    // Shown as a small slider under the text. Files live in public/certificates/.
+    certificates: [
+      { src: 'certificates/web-development.jpg', alt: 'Certificate of completion — Web Development Course, Sep to Nov 2020' },
+      { src: 'certificates/basic-web-design.jpg', alt: 'Certificate of completion — Basic Web Design Course, Jan 2021' },
+      { src: 'certificates/special-web-design.jpg', alt: 'Certificate of completion — Special Web Design Course, Dec 2021 to Feb 2022' },
+    ],
   },
   {
     title: 'B.A. (English)',
