@@ -1,0 +1,148 @@
+// All copy on the page lives here — edit this file to update the site.
+
+export const profile = {
+  name: 'Aung Pyae Phyo',
+  role: 'Web & Mobile Developer',
+  location: 'Taunggyi, Myanmar',
+  email: 'ap1548999@gmail.com',
+  github: 'https://github.com/Ivankali2020',
+  githubHandle: 'Ivankali2020',
+  intro:
+    'Backend developer building Laravel platforms, Filament panels and Flutter apps — from multi-tenant commerce to offline point-of-sale.',
+  about: [
+    'I am an ambitious developer with a mature, responsible approach to every task I take on. I work well with others, and I care about delivering on time and to a high standard.',
+    'I trained as a teacher and studied English literature before changing careers in 2020. That path left me with clear communication, structured thinking and patience — habits I now bring to code reviews, cross-border teamwork and the products I ship.',
+  ],
+  stats: [
+    { value: '5+', label: 'Years building for the web' },
+    { value: '3', label: 'Languages — PHP, JavaScript, Dart' },
+    { value: '2', label: 'Self-initiated products shipped' },
+  ],
+}
+
+export const skills = [
+  {
+    title: 'Backend',
+    items: [
+      'Laravel framework',
+      'Filament',
+      'RESTful API development',
+      'MySQL database management',
+      'Git version control',
+      'Testing & debugging',
+    ],
+  },
+  {
+    title: 'Frontend & Mobile',
+    items: ['JavaScript', 'React', 'Vue', 'Livewire', 'Flutter'],
+  },
+  {
+    title: 'Ways of working',
+    items: [
+      'Problem-solving',
+      'Strong attention to detail',
+      'Teamwork & communication',
+      'Code review',
+    ],
+  },
+]
+
+export const marquee = [
+  'Laravel', 'Filament', 'Livewire', 'PHP', 'MySQL', 'REST APIs', 'React', 'Vue',
+  'JavaScript', 'Flutter', 'Dart', 'Tailwind CSS', 'Pest', 'WordPress', 'kintone', 'Git',
+]
+
+export const experience = [
+  {
+    role: 'Backend Developer',
+    company: 'Coosy Japan — Myanmar branch',
+    period: 'Jun 2024 — Present',
+    points: [
+      'Build custom-designed WordPress sites with SEO optimisation.',
+      'Collaborate daily with the Japanese team.',
+      'Write to Japanese-standard design rules and CSS conventions such as BEM.',
+      'Develop custom web pages with Filament and Livewire.',
+      'Build in-house applications through kintone customisation.',
+      'Learning AWS services for deploying test servers.',
+    ],
+  },
+  {
+    role: 'Senior Laravel Developer',
+    company: 'APP.COM.MM Company Limited',
+    period: '2023 — May 2024',
+    points: [
+      'Developed and maintained web applications on the Laravel framework.',
+      'Implemented backend logic, database schemas and RESTful APIs.',
+      'Applied advanced Eloquent ORM: eager and lazy loading, relationships, model scopes, custom accessors and mutators.',
+      'Used Laravel Queues and Horizon for asynchronous and background processing.',
+      'Conducted code reviews and gave feedback to team members.',
+      'Began learning Flutter for mobile development.',
+    ],
+  },
+  {
+    role: 'Mid Laravel Developer',
+    company: 'APP.COM.MM Company Limited',
+    period: 'May 2021 — 2023',
+    points: [
+      'Assisted senior developers in building and maintaining Laravel projects.',
+      'Worked on frontend tasks in HTML, CSS and JavaScript.',
+      'Contributed to the design and development of RESTful APIs.',
+      'Wrote unit tests and took part in bug fixing.',
+    ],
+  },
+]
+
+export const projects = [
+  {
+    kind: 'store',
+    title: 'Multi-Vendor E-Commerce & POS Platform',
+    url: 'https://github.com/Ivankali2020/ecommerce_plus',
+    stack: ['Laravel 13', 'PHP 8.4', 'Filament 5', 'Livewire 4', 'Tailwind CSS 4', 'Pest'],
+    summary:
+      'A multi-tenant SaaS platform where Myanmar sellers each run their own online store on a custom domain, with a built-in point-of-sale system and a bilingual English/Myanmar interface.',
+    points: [
+      'Domain-based multi-tenancy with stancl/tenancy — a branded storefront per seller, data kept separate in a shared database.',
+      'Separate Filament admin and seller panels with role-based permissions, staff sub-accounts and subscription-gated access.',
+      'Livewire storefront: variants, retail and wholesale pricing, cart and checkout with delivery-zone fees, cash on delivery and payment-slip uploads.',
+      'Loyalty points and referrals, gift redemption, reviews, order returns and Excel import/export.',
+      'Telegram order notifications, ESC/POS thermal receipts, PDF invoices, Google sign-in and a Sanctum REST API for mobile clients.',
+      'Storefront UI rebuilt as a reusable Blade component library with design tokens, covered by Pest tests.',
+    ],
+  },
+  {
+    kind: 'pos',
+    title: 'Offline Point-of-Sale App',
+    url: 'https://github.com/Ivankali2020/offiline-pos',
+    stack: ['Flutter', 'Dart', 'SQLite', 'GetX'],
+    summary:
+      'A Flutter POS application for managing sales, inventory, purchases, expenses and returns — built to keep working with no internet connection.',
+    points: [
+      'Local SQLite database so sales are processed without any internet dependency.',
+      'Product and inventory management with categories, brands, suppliers, variants and stock tracking.',
+      'Full sales workflow: checkout, discounts, payment handling, returns and invoice generation.',
+      'Dashboard analytics with sales summaries, charts and daily/monthly reporting.',
+      'Barcode scanning, thermal receipt printing and an English/Myanmar multi-store interface.',
+    ],
+  },
+]
+
+export const education = [
+  {
+    title: 'Web Development Certificate',
+    place: 'MMSIT',
+    period: '2020 — 2021',
+    text: 'The course I took when I decided to change careers — backend and frontend techniques practised on real-life projects.',
+  },
+  {
+    title: 'B.A. (English)',
+    place: 'Loikaw University',
+    period: '2016 — 2019',
+    text: 'Majored in English literature, specialising in professional writing, critical analysis and structural editing.',
+  },
+  {
+    title: 'Diploma in Teacher Education',
+    place: 'Taunggyi Education College',
+    period: '2016 — 2018',
+    text: 'First steps in computer programming, alongside presentation, communication and group-work skills.',
+  },
+]
