@@ -20,29 +20,36 @@ export const profile = {
   ],
 }
 
+// `icon` picks the logo shown on the right of each row — see src/skillIcons.jsx for the list.
 export const skills = [
   {
     title: 'Backend',
     items: [
-      'Laravel framework',
-      'Filament',
-      'RESTful API development',
-      'MySQL database management',
-      'Git version control',
-      'Testing & debugging',
+      { name: 'Laravel framework', icon: 'laravel' },
+      { name: 'Filament', icon: 'filament' },
+      { name: 'RESTful API development', icon: 'api' },
+      { name: 'MySQL database management', icon: 'mysql' },
+      { name: 'Git version control', icon: 'git' },
+      { name: 'Testing & debugging', icon: 'testing' },
     ],
   },
   {
     title: 'Frontend & Mobile',
-    items: ['JavaScript', 'React', 'Vue', 'Livewire', 'Flutter'],
+    items: [
+      { name: 'JavaScript', icon: 'javascript' },
+      { name: 'React', icon: 'react' },
+      { name: 'Vue', icon: 'vue' },
+      { name: 'Livewire', icon: 'livewire' },
+      { name: 'Flutter', icon: 'flutter' },
+    ],
   },
   {
     title: 'Ways of working',
     items: [
-      'Problem-solving',
-      'Strong attention to detail',
-      'Teamwork & communication',
-      'Code review',
+      { name: 'Problem-solving', icon: 'idea' },
+      { name: 'Strong attention to detail', icon: 'detail' },
+      { name: 'Teamwork & communication', icon: 'team' },
+      { name: 'Code review', icon: 'review' },
     ],
   },
 ]
@@ -94,7 +101,8 @@ export const experience = [
 
 export const projects = [
   {
-    kind: 'store',
+    // Screenshots for the slider. Put files in public/projects/… and list them here.
+    images: ['projects/ecommerce/1.svg', 'projects/ecommerce/2.svg', 'projects/ecommerce/3.svg'],
     title: 'Multi-Vendor E-Commerce & POS Platform',
     url: 'https://github.com/Ivankali2020/ecommerce_plus',
     stack: ['Laravel 13', 'PHP 8.4', 'Filament 5', 'Livewire 4', 'Tailwind CSS 4', 'Pest'],
@@ -110,7 +118,7 @@ export const projects = [
     ],
   },
   {
-    kind: 'pos',
+    images: ['projects/pos/1.svg', 'projects/pos/2.svg', 'projects/pos/3.svg'],
     title: 'Offline Point-of-Sale App',
     url: 'https://github.com/Ivankali2020/offiline-pos',
     stack: ['Flutter', 'Dart', 'SQLite', 'GetX'],

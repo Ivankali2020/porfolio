@@ -3,6 +3,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import Scene from './Scene.jsx'
+import SkillIcon from './skillIcons.jsx'
+import ProjectSlider from './ProjectSlider.jsx'
 import { profile, skills, marquee, experience, projects, education } from './data.js'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -64,64 +66,6 @@ function StatCard({ stat }) {
       <div className="stat-text">
         <span className="stat-label">{stat.label}</span>
         <span className="stat-more"><span>{stat.more}</span></span>
-      </div>
-    </div>
-  )
-}
-
-function ProjectVisual({ kind }) {
-  const tilt = (e) => {
-    const r = e.currentTarget.getBoundingClientRect()
-    e.currentTarget.style.setProperty('--rx', `${((e.clientY - r.top) / r.height - 0.5) * -10}deg`)
-    e.currentTarget.style.setProperty('--ry', `${((e.clientX - r.left) / r.width - 0.5) * 12}deg`)
-  }
-  const reset = (e) => {
-    e.currentTarget.style.setProperty('--rx', '0deg')
-    e.currentTarget.style.setProperty('--ry', '0deg')
-  }
-  return (
-    <div className={`visual visual--${kind}`} onPointerMove={tilt} onPointerLeave={reset} aria-hidden="true">
-      <div className="visual-inner">
-        {kind === 'store' ? (
-          <>
-            <div className="layer win" data-speed="0.15">
-              <div className="win-bar"><i /><i /><i /><b>seller.shop</b></div>
-              <div className="grid">
-                {Array.from({ length: 6 }, (_, i) => (
-                  <div className="tile" key={i}><span /><em /><em /></div>
-                ))}
-              </div>
-            </div>
-            <div className="layer panel" data-speed="0.45">
-              <small>Orders today</small>
-              <strong>128</strong>
-              <div className="bars">{[40, 62, 35, 80, 55, 92, 70].map((h, i) => <i key={i} style={{ height: `${h}%` }} />)}</div>
-            </div>
-            <div className="layer chip" data-speed="0.8">
-              <span className="dot" /> New order · Telegram
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="layer phone" data-speed="0.2">
-              <div className="notch" />
-              <small>Sales · Offline</small>
-              <strong>Ks 482,500</strong>
-              <div className="bars">{[30, 55, 45, 75, 60, 88, 50, 68].map((h, i) => <i key={i} style={{ height: `${h}%` }} />)}</div>
-              <div className="rows"><em /><em /><em /></div>
-            </div>
-            <div className="layer receipt" data-speed="0.6">
-              <b>RECEIPT</b>
-              <em /><em /><em /><em />
-              <hr />
-              <em className="total" />
-              <div className="barcode" />
-            </div>
-            <div className="layer chip" data-speed="0.9">
-              <span className="dot" /> SQLite · synced locally
-            </div>
-          </>
-        )}
       </div>
     </div>
   )
@@ -312,7 +256,12 @@ export default function App() {
               <article className="skill-col" key={group.title} data-reveal>
                 <h3>{group.title}</h3>
                 <ul data-stagger>
-                  {group.items.map((item) => <li key={item}>{item}</li>)}
+                  {group.items.map((item) => (
+                    <li key={item.name}>
+                      <span>{item.name}</span>
+                      <SkillIcon name={item.icon} />
+                    </li>
+                  ))}
                 </ul>
               </article>
             ))}
@@ -354,7 +303,9 @@ export default function App() {
           <Heading index="04" label="Self projects">Products built <em>end to end.</em></Heading>
           {projects.map((p, i) => (
             <article className={`project ${i % 2 ? 'project--flip' : ''}`} key={p.title}>
-              <ProjectVisual kind={p.kind} />
+              <div className="visual" data-reveal>
+                <ProjectSlider images={p.images} title={p.title} />
+              </div>
               <div className="project-body">
                 <p className="eyebrow" data-reveal><span>{String(i + 1).padStart(2, '0')}</span> Project</p>
                 <h3 data-reveal>{p.title}</h3>
