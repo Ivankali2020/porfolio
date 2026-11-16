@@ -14,9 +14,9 @@ export const profile = {
     'I trained as a teacher and studied English literature before changing careers in 2020. That path left me with clear communication, structured thinking and patience — habits I now bring to code reviews, cross-border teamwork and the products I ship.',
   ],
   stats: [
-    { value: '5+', label: 'Years building for the web' },
-    { value: '3', label: 'Languages — PHP, JavaScript, Dart' },
-    { value: '2', label: 'Self-initiated products shipped' },
+    { value: '5+', label: 'Years building for the web', more: 'Working with Laravel professionally since May 2021.' },
+    { value: '3', label: 'Languages — PHP, JavaScript, Dart', more: 'PHP for backends, JavaScript for interfaces, Dart for Flutter apps.' },
+    { value: '2', label: 'Self-initiated products shipped', more: 'A multi-vendor commerce platform and an offline point-of-sale app.' },
   ],
 }
 

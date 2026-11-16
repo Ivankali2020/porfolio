@@ -42,6 +42,33 @@ function Heading({ index, label, children }) {
   )
 }
 
+// Stat card: tilts toward the pointer, shows a spotlight, and reveals a detail line.
+function StatCard({ stat }) {
+  const move = (e) => {
+    const el = e.currentTarget
+    const r = el.getBoundingClientRect()
+    const x = (e.clientX - r.left) / r.width
+    const y = (e.clientY - r.top) / r.height
+    el.style.setProperty('--mx', `${x * 100}%`)
+    el.style.setProperty('--my', `${y * 100}%`)
+    el.style.setProperty('--rx', `${(y - 0.5) * -9}deg`)
+    el.style.setProperty('--ry', `${(x - 0.5) * 9}deg`)
+  }
+  const leave = (e) => {
+    e.currentTarget.style.setProperty('--rx', '0deg')
+    e.currentTarget.style.setProperty('--ry', '0deg')
+  }
+  return (
+    <div className="stat" tabIndex={0} onPointerMove={move} onPointerLeave={leave}>
+      <strong data-count={stat.value}>{stat.value}</strong>
+      <div className="stat-text">
+        <span className="stat-label">{stat.label}</span>
+        <span className="stat-more"><span>{stat.more}</span></span>
+      </div>
+    </div>
+  )
+}
+
 function ProjectVisual({ kind }) {
   const tilt = (e) => {
     const r = e.currentTarget.getBoundingClientRect()
@@ -177,6 +204,20 @@ export default function App() {
         })
       })
 
+      // — stat numbers count up when they scroll into view
+      gsap.utils.toArray('[data-count]').forEach((el) => {
+        const final = el.dataset.count
+        const end = parseInt(final, 10)
+        const suffix = final.replace(/^\d+/, '')
+        const counter = { n: 0 }
+        gsap.to(counter, {
+          n: end, duration: 1.6, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%' },
+          onStart: () => { el.textContent = `0${suffix}` },
+          onUpdate: () => { el.textContent = `${Math.round(counter.n)}${suffix}` },
+        })
+      })
+
       // — experience timeline draws itself
       gsap.from('.tl-line span', {
         scaleY: 0, ease: 'none',
@@ -255,8 +296,7 @@ export default function App() {
             <ul className="stats">
               {profile.stats.map((s, i) => (
                 <li key={s.label} data-speed={0.12 + i * 0.14}>
-                  <strong>{s.value}</strong>
-                  <span>{s.label}</span>
+                  <StatCard stat={s} />
                 </li>
               ))}
             </ul>
