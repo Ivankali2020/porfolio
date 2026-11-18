@@ -76,7 +76,7 @@ export const experience = [
     ],
   },
   {
-    role: 'Senior Laravel Developer',
+    role: 'Laravel Developer',
     company: 'APP.COM.MM Company Limited',
     logo: 'logos/appcommm.jpg',
     url: 'https://app.com.mm/',
@@ -91,7 +91,7 @@ export const experience = [
     ],
   },
   {
-    role: 'Mid Laravel Developer',
+    role: 'Junior Laravel Developer',
     company: 'APP.COM.MM Company Limited',
     logo: 'logos/appcommm.jpg',
     url: 'https://app.com.mm/',
